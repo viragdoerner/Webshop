@@ -1,6 +1,6 @@
 package com.programwithvirag.restservice.RestApp.service;
 
-import com.programwithvirag.restservice.RestApp.Item;
+import com.programwithvirag.restservice.RestApp.model.Item;
 import com.programwithvirag.restservice.RestApp.dao.ItemDAO;
 import com.programwithvirag.restservice.RestApp.exception.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +42,22 @@ public class ItemService {
 
     public Item updateItem(int itemId) {
 
-        Optional<Item> optionalItem =  itemDAO.findById(itemId);
+        Optional<Item> optionalItem = itemDAO.findById(itemId);
 
-        if(!optionalItem.isPresent())
+        if (!optionalItem.isPresent())
             throw new ItemNotFoundException("Item Record is not available...");
 
         Item item = itemDAO.findById(itemId).get();
         item.setDone(!item.isDone());
         return itemDAO.save(item);
+    }
 
-/*        int index = -1;
+    public void deleteItem(int itemId){
+        itemDAO.deleteById(itemId);
+    }
+
+/*  update próbálkozások
+ int index = -1;
         for(int i =0; i< itemList.size(); i++) {
             if (itemList.get(i).getItemId() == itemId) {
                 itemList.get(i).setDone(!itemList.get(i).isDone());
@@ -83,5 +89,4 @@ public class ItemService {
                     .findFirst()
                     .get()
         );*/
-    }
 }

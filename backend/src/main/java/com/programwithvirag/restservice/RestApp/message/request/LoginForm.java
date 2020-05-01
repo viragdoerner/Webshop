@@ -1,4 +1,7 @@
-package hu.schdesign.solarboat.message.Request;
+package com.programwithvirag.restservice.RestApp.message.request;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

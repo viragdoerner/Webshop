@@ -1,4 +1,4 @@
-package hu.schdesign.solarboat.message.Response;
+package com.programwithvirag.restservice.RestApp.message.response;
 
 public class ResponseMessage {
     private String message;
