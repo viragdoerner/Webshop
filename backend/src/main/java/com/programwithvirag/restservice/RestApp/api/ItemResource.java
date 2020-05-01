@@ -35,4 +35,10 @@ public class ItemResource {
     public Item updateItem( @PathVariable int itemId){
         return itemService.updateItem(itemId);
     }
+
+    @DeleteMapping(value ="/{itemId}")
+    public void deleteItem( @PathVariable int itemId){
+         itemService.deleteItem(itemId);
+    }
+
 }

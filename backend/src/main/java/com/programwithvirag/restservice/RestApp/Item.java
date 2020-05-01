@@ -4,15 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int itemId;
+    @NotNull
     private String name;
+    @NotNull
     private String amount;
+    @NotNull
+    private Integer price;
     private boolean done = false;
 
     public int getItemId() {
@@ -37,6 +43,14 @@ public class Item {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public boolean isDone() {
