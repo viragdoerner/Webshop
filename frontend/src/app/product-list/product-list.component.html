@@ -1,0 +1,27 @@
+<div class="container row justify-content-md-center ">
+  <div class="col-12 p-5">
+    <button (click)="openFormModal()">Add item</button>
+  </div>
+  <div class="col-12 col-md-8">
+    <table mdbTable class="table">
+      <tbody>
+      <tr mdbTableCol *ngFor="let product of products">
+        <td scope="col"> <h3>{{product.name}}</h3></td>
+        <td scope="col">{{product.amount}}</td>
+        <td scope="col">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" [checked]="product.done"  (change)="updateItem(product)" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1"></label>
+          </div>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+
+
+
+
+
