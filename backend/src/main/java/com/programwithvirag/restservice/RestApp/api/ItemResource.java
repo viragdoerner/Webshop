@@ -23,6 +23,7 @@ public class ItemResource {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Item> getItems(){
         return itemService.getItemList();
     }

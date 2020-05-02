@@ -1,0 +1,32 @@
+<div class="container justify-content-center">
+<div class="jumbotron col-6">
+  <h1>Sign in</h1>
+  <div>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Name</label>
+        <input type="text" class="form-control" id="username"
+               required
+               [(ngModel)]="form.username" name="username"
+                [ngClass]="{'failed': isLoginFailed }">
+
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password"
+               required
+               [(ngModel)]="form.password" name="password"
+               [ngClass]="{'failed': isLoginFailed }">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+      <div [hidden]="!isLoginFailed"
+           class="alert alert-danger mt-3">
+        {{errorMessage}}
+      </div>
+
+    </form>
+  </div>
+</div>
+</div>

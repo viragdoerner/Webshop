@@ -1,0 +1,48 @@
+<div class="container justify-content-center">
+  <div class="jumbotron col-6">
+    <h1>Sign up</h1>
+    <div>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"
+                 required
+                 [(ngModel)]="form.name" name="name"
+                 [ngClass]="{'failed': isSignedUpFailed }">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email"
+                 required
+                 [(ngModel)]="form.email" name="email"
+                 [ngClass]="{'failed': isSignedUpFailed }">
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username"
+                 required
+                 [(ngModel)]="form.username" name="username"
+                 [ngClass]="{'failed': isSignedUpFailed }">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password"
+                 required
+                 [(ngModel)]="form.password" name="password"
+                 [ngClass]="{'failed': isSignedUpFailed }">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+        <div [hidden]="!isSignedUpFailed"
+             class="alert alert-danger mt-3">
+          {{errorMessage}}
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
