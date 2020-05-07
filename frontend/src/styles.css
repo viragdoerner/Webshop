@@ -107,14 +107,6 @@ label {
 }
 
 
-app-product-list{
-  width: 100%;
-  padding: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
 
 /* Checkout Cart, Shipping Prices */
 

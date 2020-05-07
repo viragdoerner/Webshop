@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {JwtResponse} from "./jwt-response";
@@ -17,9 +17,11 @@ export class AuthService {
   private loginUrl = this.BASE_URL + '/signin';
   private signupUrl =  this.BASE_URL + '/signup';
 
+
   constructor(private http: HttpClient) { }
 
  attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse>{
+
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 

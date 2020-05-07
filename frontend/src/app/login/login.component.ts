@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  role: string;
   private loginInfo: AuthLoginInfo;
 
   constructor(
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getAuthorities();
+      this.role = this.tokenStorage.getAuthority();
     }
   }
 
@@ -37,17 +37,15 @@ export class LoginComponent implements OnInit {
       this.form.username,
       this.form.password
     );
-
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
-        this.tokenStorage.saveAuthorities(data.authorities);
+        this.tokenStorage.saveAuthority(data.authorities);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
-        console.log('Sikeresen bejelentkeztel ' + data.username);
+        console.log('Sikeresen bejelentkeztel ' + this.tokenStorage.getUsername() );
         this.router.navigateByUrl('/items');
       },
       (error) => {

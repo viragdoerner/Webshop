@@ -10,22 +10,20 @@ import {TokenStorageService} from "./auth/token-storage.service";
 export class AppComponent implements OnInit {
   title = 'shoppinglist-app';
 
-  private roles: string[];
+  private role: string;
   private authority: string;
 
   constructor(private tokenStorage: TokenStorageService){  }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()){
-      this.roles = this.tokenStorage.getAuthorities();
-      this.roles.every(role => {
-        if(role ==='ROLE_ADMIN'){
-          this.authority = 'admin';
-          return false;
-        }
+      this.role = this.tokenStorage.getAuthority();
+      if(this.role ==='ROLE_ADMIN'){
+        this.authority = 'admin';
+      }
+      if(this.role ==='ROLE_USER'){
         this.authority = 'user';
-        return true;
-      });
+      }
     }
   }
 }
