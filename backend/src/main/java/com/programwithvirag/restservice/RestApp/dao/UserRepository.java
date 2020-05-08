@@ -1,4 +1,4 @@
-package com.programwithvirag.restservice.RestApp.repository;
+package com.programwithvirag.restservice.RestApp.dao;
 
 import java.util.Optional;
 

@@ -12,8 +12,8 @@ import com.programwithvirag.restservice.RestApp.message.response.ResponseMessage
 import com.programwithvirag.restservice.RestApp.model.Role;
 import com.programwithvirag.restservice.RestApp.model.RoleName;
 import com.programwithvirag.restservice.RestApp.model.User;
-import com.programwithvirag.restservice.RestApp.repository.RoleRepository;
-import com.programwithvirag.restservice.RestApp.repository.UserRepository;
+import com.programwithvirag.restservice.RestApp.dao.RoleRepository;
+import com.programwithvirag.restservice.RestApp.dao.UserRepository;
 import com.programwithvirag.restservice.RestApp.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

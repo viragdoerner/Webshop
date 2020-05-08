@@ -1,7 +1,7 @@
 package com.programwithvirag.restservice.RestApp.security.services;
 
 import com.programwithvirag.restservice.RestApp.model.User;
-import com.programwithvirag.restservice.RestApp.repository.UserRepository;
+import com.programwithvirag.restservice.RestApp.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
