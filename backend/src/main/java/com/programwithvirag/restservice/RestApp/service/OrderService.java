@@ -1,48 +1,47 @@
 package com.programwithvirag.restservice.RestApp.service;
 import com.programwithvirag.restservice.RestApp.dao.OrderRepository;
 import com.programwithvirag.restservice.RestApp.exception.OrderNotFoundException;
-import com.programwithvirag.restservice.RestApp.model.Order;
-import com.programwithvirag.restservice.RestApp.model.Order;
+import com.programwithvirag.restservice.RestApp.model.Ordermodel;
+import com.programwithvirag.restservice.RestApp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
 public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
-    private int orderIdCount = 1;
-    private List<Order> orderList = new CopyOnWriteArrayList<>();
 
-    public Order addOrder(Order order) {
-        return orderRepository.save(order);
+    public void addOrder(Ordermodel order) {
+        //return userService.addOrder(order.getUser(), order);
+        //return orderRepository.save(order);
     }
 
-    public List<Order> getOrderList() {
+    public List<Ordermodel> getOrderList() {
+
         return orderRepository.findAll();
     }
 
-    public Order getOrder(int orderId) {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+    public Ordermodel getOrder(int orderId) {
+        Optional<Ordermodel> optionalOrdermodel = orderRepository.findById(orderId);
 
-        if (!optionalOrder.isPresent())
-            throw new OrderNotFoundException("Order Record is not available...");
+        if (!optionalOrdermodel.isPresent())
+            throw new OrderNotFoundException("Ordermodel Record is not available...");
 
-        return optionalOrder.get();
+        return optionalOrdermodel.get();
     }
 
-    public Order updateOrder(int orderId, String newStatus) {
+    public Ordermodel updateOrder(int orderId, String newStatus) {
 
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        Optional<Ordermodel> optionalOrdermodel = orderRepository.findById(orderId);
 
-        if (!optionalOrder.isPresent())
-            throw new OrderNotFoundException("Order Record is not available...");
+        if (!optionalOrdermodel.isPresent())
+            throw new OrderNotFoundException("Ordermodel Record is not available...");
 
-        Order order = orderRepository.findById(orderId).get();
+        Ordermodel order = orderRepository.findById(orderId).get();
         order.setStatus(newStatus);
         return orderRepository.save(order);
     }

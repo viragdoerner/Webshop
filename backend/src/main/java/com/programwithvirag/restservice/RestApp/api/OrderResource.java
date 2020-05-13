@@ -1,13 +1,18 @@
 package com.programwithvirag.restservice.RestApp.api;
 
-import com.programwithvirag.restservice.RestApp.model.Order;
+
+import com.programwithvirag.restservice.RestApp.dao.ItemDAO;
+import com.programwithvirag.restservice.RestApp.dao.UserRepository;
+import com.programwithvirag.restservice.RestApp.message.request.UpdateOrder;
+import com.programwithvirag.restservice.RestApp.model.Ordermodel;
+import com.programwithvirag.restservice.RestApp.model.User;
 import com.programwithvirag.restservice.RestApp.service.OrderService;
-import com.programwithvirag.restservice.RestApp.service.OrderService;
+import com.programwithvirag.restservice.RestApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
+
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -17,29 +22,33 @@ public class OrderResource {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
+
 
     @PostMapping
-    public Order addOrder(@RequestBody Order order){
-        return orderService.addOrder( order);
+    public User addOrdermodel(@RequestBody Ordermodel ordermodel){
+        return userService.addOrder(ordermodel);
+        //return orderService.addOrder(ordermodel);
     }
 
     @GetMapping
-    public List<Order> getOrders(){
+    public List<Ordermodel> getOrdermodels(){
         return orderService.getOrderList();
     }
 
     @GetMapping (value ="/{orderId}")
-    public Order getOrder( @PathVariable("orderId") int orderId){
+    public Ordermodel getOrdermodel( @PathVariable("orderId") int orderId){
         return orderService.getOrder(orderId);
     }
 
     @PutMapping(value ="/{orderId}")
-    public Order updateOrder( @PathVariable int orderId, @PathVariable("newStatus") String newStatus){
-        return orderService.updateOrder(orderId, newStatus);
+    public Ordermodel updateOrdermodel( @PathVariable int orderId, @RequestBody UpdateOrder updateOrder){
+        return orderService.updateOrder(orderId, updateOrder.getNewStatus());
     }
 
     @DeleteMapping(value ="/{orderId}")
-    public void deleteOrder( @PathVariable int orderId){
+    public void deleteOrdermodel( @PathVariable int orderId){
         orderService.deleteOrder(orderId);
     }
 

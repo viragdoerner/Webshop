@@ -18,7 +18,7 @@ public class ItemResource {
     private ItemService itemService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public Item addItem( @RequestBody Item item){
         return itemService.addItem( item);
     }
@@ -34,13 +34,13 @@ public class ItemResource {
     }
 
     @PutMapping(value ="/{itemId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Item updateItem( @PathVariable int itemId){
         return itemService.updateItem(itemId);
     }
 
     @DeleteMapping(value ="/{itemId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public void deleteItem( @PathVariable int itemId){
          itemService.deleteItem(itemId);
     }

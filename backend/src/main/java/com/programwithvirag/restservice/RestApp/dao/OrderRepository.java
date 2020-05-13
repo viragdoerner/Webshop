@@ -1,16 +1,14 @@
 package com.programwithvirag.restservice.RestApp.dao;
 
-import com.programwithvirag.restservice.RestApp.model.Item;
-import com.programwithvirag.restservice.RestApp.model.Order;
+import com.programwithvirag.restservice.RestApp.model.Ordermodel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Integer > {
+public interface OrderRepository extends CrudRepository<Ordermodel, Integer > {
 
     @Override
-    List<Order> findAll();
-
+    List<Ordermodel> findAll();
 }

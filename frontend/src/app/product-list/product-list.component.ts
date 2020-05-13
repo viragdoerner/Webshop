@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 //import { products } from '../products';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Item} from './model/item';
+import {Item} from '../model/item';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormModalComponent} from "../form-modal/form-modal.component";
@@ -13,10 +13,9 @@ import {ApiService} from "../shared/api.service";
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit{
-  validatingForm: FormGroup;
-
-  //products = products;
-  products: Item[] = [];
+  form: any = {};
+  failed = false;
+  items: Item[] = [];
   private productsUrl = 'api/items';  // URL to web api
   constructor(
     private apiService : ApiService,
@@ -40,17 +39,19 @@ export class ProductListComponent implements OnInit{
     public getAllItems(){
       this.apiService.getAllItems().subscribe(
          res => {
-          this.products = res;
+          this.items = res;
         },
          err => {
            alert("get error");
         }
      );
     }
+  openContent(longContent) {
+    this.modalService.open(longContent, { scrollable: true, centered: true, size: 'lg' });
+  }
 
 
-
-  openFormModal() {
+  /*openFormModal() {
     const modalRef = this.modalService.open(FormModalComponent);
 
     modalRef.result.then((result) => {
@@ -64,12 +65,10 @@ export class ProductListComponent implements OnInit{
           alert(" post error");
         }
       )
-
-
     }).catch((error) => {
       console.log(error);
     });
-  }
+  }*/
 
   ngOnInit(): void {
     this.getAllItems();
@@ -81,5 +80,8 @@ export class ProductListComponent implements OnInit{
   }
   */
 
+  onSubmit() {
+
+  }
 }
 

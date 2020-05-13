@@ -44,7 +44,7 @@ public class User{
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Ordermodel> orders;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -109,11 +109,15 @@ public class User{
         this.roles = roles;
     }
 
-    public List<Order> getOrders() {
+    public List<Ordermodel> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Ordermodel> orders) {
         this.orders = orders;
+    }
+
+    public void addOrder(Ordermodel ordermodel) {
+        this.orders.add(ordermodel);
     }
 }

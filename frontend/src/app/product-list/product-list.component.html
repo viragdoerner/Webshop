@@ -1,18 +1,18 @@
 <app-top-bar></app-top-bar>
 <div class="container app-product-list row justify-content-md-center ">
-  <div class="col-12 p-5">
-    <button (click)="openFormModal()">Add item</button>
-  </div>
+  <a class="col-2" (click)="openContent(EditForm)" ><mat-icon class="update-icon">add</mat-icon></a>
   <div class="col-12 col-md-8">
-    <table mdbTable class="table">
+    <table mdbTable class="table pt-5">
       <tbody>
-      <tr mdbTableCol *ngFor="let product of products">
-        <td scope="col"> <h3>{{product.name}}</h3></td>
-        <td scope="col">{{product.amount}}</td>
+      <tr mdbTableCol *ngFor="let item of items">
+        <td scope="col"> <h3>{{item.name}}</h3></td>
+        <td scope="col">{{item.price}}</td>
+        <td scope="col"> <mat-icon class="update-icon">edit</mat-icon></td>
+        <td scope="col"> <mat-icon class="update-icon">delete</mat-icon></td>
         <td scope="col">
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" [checked]="product.done"  (change)="updateItem(product)" id="exampleCheck1">
+            <input type="checkbox" class="form-check-input" [checked]="false"  (change)="updateItem(item)" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1"></label>
           </div>
 
@@ -22,6 +22,44 @@
     </table>
 </div>
 
+
+  <ng-template #EditForm let-modal>
+    <div class="modal-header">
+      <h2 class="title mb-2 mt-4">New product</h2>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body pb-5">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name"
+                     required
+                     [(ngModel)]="form.name" name="name"
+                     placeholder="name"
+                     [ngClass]="{'failed': failed }">
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="text" class="form-control" id="price"
+                        [(ngModel)]="form.price" name="price"
+                        placeholder="price"
+                        [ngClass]="{'failed': failed }" >
+            </div>
+          </div>
+        </div>
+
+        <button mat-button color="primary"(click)="onSubmit()" [ngClass]="{'disabled': !loginForm.form.valid }" ><span>Add</span></button>
+
+      </form>
+    </div>
+  </ng-template>
 
 
 

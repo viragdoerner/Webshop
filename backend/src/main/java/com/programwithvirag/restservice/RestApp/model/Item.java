@@ -9,15 +9,12 @@ import javax.validation.constraints.Size;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int itemId;
     @NotNull
     private String name;
     @NotNull
-    private String amount;
-    @NotNull
     private Integer price;
-    private boolean done = false;
 
     public int getItemId() {
         return itemId;
@@ -35,28 +32,12 @@ public class Item {
         this.name = name;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public Integer getPrice() {
         return price;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
     }
 
 }

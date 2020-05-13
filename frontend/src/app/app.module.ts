@@ -19,6 +19,10 @@ import { NeworderComponent } from './neworder/neworder.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { AllorderComponent } from './allorder/allorder.component';
 import { UsersComponent } from './users/users.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDividerModule} from "@angular/material/divider";
 // MDB Angular Free
 
 @NgModule({
@@ -34,19 +38,23 @@ import { UsersComponent } from './users/users.component';
     AllorderComponent,
     UsersComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatCheckboxModule,
-        HttpClientModule,
-        NgbModule,
-        RouterModule.forRoot([
-            {path: '', component: ProductListComponent},
-        ]),
-        FormsModule,
-    ],
+  imports: [
+    MatSliderModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    HttpClientModule,
+    NgbModule,
+    RouterModule.forRoot([
+      {path: '', component: ProductListComponent},
+    ]),
+    FormsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatDividerModule,
+  ],
   providers: [
     {
     provide : HTTP_INTERCEPTORS,

@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class TopBarComponent implements OnInit {
 
   username: string;
-  private authority: string;
+  authority: string;
 
   constructor(private tokenStorage: TokenStorageService, private router: Router) {
   }

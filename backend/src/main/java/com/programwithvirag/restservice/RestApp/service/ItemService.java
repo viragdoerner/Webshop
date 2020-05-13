@@ -15,7 +15,7 @@ public class ItemService {
 
     @Autowired
     private ItemDAO itemDAO;
-    private int itemIdCount = 1;
+    //private int itemIdCount = 1;
     private List<Item> itemList = new CopyOnWriteArrayList<>();
 
     public Item addItem(Item item){
@@ -48,7 +48,6 @@ public class ItemService {
             throw new ItemNotFoundException("Item Record is not available...");
 
         Item item = itemDAO.findById(itemId).get();
-        item.setDone(!item.isDone());
         return itemDAO.save(item);
     }
 
