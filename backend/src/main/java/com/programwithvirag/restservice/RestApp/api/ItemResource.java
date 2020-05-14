@@ -21,7 +21,7 @@ public class ItemResource {
     private ItemService itemService;
 
     @PostMapping
-    // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Item addItem( @RequestBody Item item){
         return itemService.addItem( item);
     }
@@ -37,13 +37,13 @@ public class ItemResource {
     }
 
     @PutMapping
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Item updateItem( @RequestBody Item item){
         return itemService.updateItem(item);
     }
 
     @DeleteMapping(value ="/{itemId}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteItem( @PathVariable int itemId){
         //kitörlöm az item kapcsolatait
         List<Ordermodel> allOrder = orderService.getOrderList();

@@ -1,2 +1,45 @@
 <app-top-bar></app-top-bar>
-<p>allorder works!</p>
+<!-- Editable table -->
+<div  class="container pt-5">
+  <div id="table" class="table-editable">
+    <table class="table table-bordered table-responsive-md table-striped text-center">
+      <tr>
+        <th class="text-center">Date</th>
+        <th class="text-center">Ordered by</th>
+        <th class="text-center">$$$</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Items</th>
+        <th class="text-center">Delete</th>
+      </tr>
+      <tr *ngFor="let order of orders; let id = index">
+
+        <td>
+          <span >{{order.date}}</span>
+        </td>
+        <td>
+          <span >{{order.username}}</span>
+        </td>
+        <td>
+          <span >{{order.sum}}</span>
+        </td>
+        <td class="red-text">
+          <span contenteditable="true" (keyup)="changeValue(order.id, 'status', $event)" (blur)="updateStatus(order, $event)">{{order.status}}</span>
+        </td>
+        <td>
+            <span class="table-remove">
+              <ul *ngFor="let item of order.items" class="list-group list-group-flush">
+                <li class="list-group-item"> {{ item.name }}</li>
+              </ul>
+            </span>
+        </td>
+        <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(order.id)">Remove</button>
+            </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Editable table -->

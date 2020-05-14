@@ -1,12 +1,13 @@
 package com.programwithvirag.restservice.RestApp.message.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 public class UpdateOrder{
 
-    @NotBlank
-    @Size(min=3, max = 60)
+    @NotNull
     private String newStatus;
+    public UpdateOrder(){}
 
     public String getNewStatus() {
         return newStatus;

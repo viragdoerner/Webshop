@@ -4,6 +4,8 @@ package com.programwithvirag.restservice.RestApp.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotNull;
+
+import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,7 +21,7 @@ public class Ordermodel{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    private String date;
+    private LocalDate date;
 
     @Size(min=2, max=50)
     private String status;
@@ -34,7 +36,7 @@ public class Ordermodel{
 
     public Ordermodel( @JsonProperty("username") String username,
                   @JsonProperty("items") List<Item> items){
-        this.date = "most";
+        this.date = LocalDate.now();
         this.status = "megrendelve";
         this.username = username;
         this.items = items;
@@ -43,11 +45,11 @@ public class Ordermodel{
     public Ordermodel(){
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

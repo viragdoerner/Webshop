@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Order} from '../model/order';
+import {ApiService} from '../shared/api.service';
+import {Item} from '../model/item';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-allorder',
@@ -7,9 +11,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllorderComponent implements OnInit {
 
-  constructor() { }
+  orders: Order[] = [];
+  editField: string;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.getAllOrders();
   }
 
+  public getAllOrders() {
+    this.apiService.getAllOrder().subscribe(
+      res => {
+        this.orders = res;
+      },
+      err => {
+        alert("get error");
+      }
+    );
+  }
+  updateStatus(order: Order, event: any) {
+    this.apiService.updateOrder(order.id, event.target.textContent ).subscribe(
+      data => {
+        console.log(data);
+      },
+      error  => {
+        console.log(error);
+      }
+    );
+  }
+  remove(id: number) {
+    console.log('delete');
+    this.apiService.deleteOrder(id);
+    this.orders = this.orders.filter(h => h.id !== id);
+  }
+
+  changeValue(id: number, property: string, event: any) {
+    this.editField = event.target.textContent;
+  }
 }

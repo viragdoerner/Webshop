@@ -48,12 +48,28 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         category: 'Wpis' + (Math.floor(Math.random() * i * 10 )).toString(),
         price: 'Last' + (Math.floor(Math.random() * i * 10 )).toString()});
     }*/
-    for (let i = 1; i <= 25; i++) {
+    console.log("hosszu"+this.items.length);
+    for (let i = 0; i < this.items.length; i++) {
+     // const temp: Item = this.items.pop();
       this.elements.push({
-        name: i.toString(),
-        category: 'Wpis' + (Math.floor(Math.random() * i * 10 )).toString(),
-        price: 'Last' + (Math.floor(Math.random() * i * 10 )).toString()});
+        name: i,
+        category: 3,
+        price: 4
+      });
     }
+    var alphas:string[];
+    alphas = ["1","2","3","4"]
+    console.log(alphas[0]);
+    alphas.forEach( function (value) {
+      console.log(value);
+    });
+    let temp = this.elements.json().results;
+    temp.forEach( function (value) {
+      console.log(value);
+    });
+
+    //const temp1: Item[] = this.items.filter(h => h.itemId !== 1030);
+    //console.log(temp1[0].name);
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -81,7 +97,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       this.mdbTable.setDataSource(prev);
     }
 
-    this.mdbTablePagination.calculateFirstItemIndex();
+    this.mdbTablePagination.calculateFirstItemIndex()
     this.mdbTablePagination.calculateLastItemIndex();
 
     this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
@@ -94,6 +110,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.apiService.getAllItems().subscribe(
       res => {
         this.items = res;
+        this.elements = res;
       },
       err => {
         alert("get error");

@@ -10,6 +10,7 @@ import com.programwithvirag.restservice.RestApp.model.User;
 import com.programwithvirag.restservice.RestApp.service.OrderService;
 import com.programwithvirag.restservice.RestApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -44,30 +45,13 @@ public class OrderResource {
     }
 
     @PutMapping(value ="/{orderId}")
-    public Ordermodel updateOrdermodel( @PathVariable int orderId, @RequestBody UpdateOrder updateOrder){
-        return orderService.updateOrder(orderId, updateOrder.getNewStatus());
+    public Ordermodel updateOrdermodel( @PathVariable int orderId, @RequestBody String status){
+        return orderService.updateOrder(orderId, status);
     }
 
     @DeleteMapping(value ="/{orderId}")
     public void deleteOrdermodel( @PathVariable int orderId){
-        //kitörlöm az item tömbjét
-        Ordermodel o = orderService.getOrder(orderId);
-        o.getItems().clear();
-        orderService.updateItems(o);
 
-        //kitörlöm a userhez való kapcsolatát
-        List<User> users = userService.getUserList();
-        for(int i=0; i<users.size(); i++){
-            List<Ordermodel> orders = users.get(i).getOrders();
-            for(int j=0; j<orders.size(); j++){
-                if(orders.get(j).getId() == orderId){
-                    orders.remove(j);
-                }
-            }
-            userService.updateUser(users.get(i));
-        }
-
-        //kitörlöm magát az objektumot
         orderService.deleteOrder(orderId);
     }
 

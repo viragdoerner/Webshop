@@ -22,9 +22,21 @@
       </thead>
       <tbody #row>
       <tr mdbTableCol  *ngFor="let el of elements; let i = index">
-        <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{el.name}}</th>
+        <th scope="row">{{el.name}} {{i}}</th>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="red-text">{{el.category}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.price}}</td>
+      </tr>
+      <tr *ngFor="let item of items; let i = index">
+
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{item.name}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{item.category}}
+        </td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+          {{item.price}}
+        </td>
       </tr>
       </tbody>
       <tfoot class="grey lighten-5 w-100">
