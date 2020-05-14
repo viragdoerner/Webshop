@@ -8,22 +8,5 @@ import {TokenStorageService} from './auth/token-storage.service';
 })
 export class AppComponent {
   title = 'kliens-oldali-hf';
-
-  private role: string;
-  private authority: string;
-
-  constructor(private tokenStorage: TokenStorageService){  }
-
-  ngOnInit(): void {
-    if (this.tokenStorage.getToken()){
-      this.role = this.tokenStorage.getAuthority();
-      if(this.role ==='ROLE_ADMIN'){
-        this.authority = 'admin';
-      }
-      if(this.role ==='ROLE_USER'){
-        this.authority = 'user';
-      }
-    }
-  }
-
+  constructor() {}
 }

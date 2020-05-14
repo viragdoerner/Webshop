@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -18,15 +19,8 @@ export class TopBarComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.username = this.tokenStorage.getUsername();
-      const role = this.tokenStorage.getAuthority();
-      console.log('1. top-bar init: ' + role);
-      if (role === 'ROLE_ADMIN') {
-        this.authority = 'admin';
-      }
-      if (role === 'ROLE_USER') {
-        this.authority = 'user';
-      }
-      console.log('2. top-bar init: ' + this.authority);
+      this.authority = this.tokenStorage.getAuthority();
+      console.log('top-bar init: ' + this.authority);
     }
   }
 
@@ -34,6 +28,7 @@ export class TopBarComponent implements OnInit {
     console.log('signout');
     this.tokenStorage.signOut();
     this.router.navigateByUrl('/');
+    this.authority = null;
     console.log('signout wtf');
 
   }

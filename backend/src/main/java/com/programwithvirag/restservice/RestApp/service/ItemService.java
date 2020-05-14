@@ -40,14 +40,7 @@ public class ItemService {
         return optionalItem.get();
     }
 
-    public Item updateItem(int itemId) {
-
-        Optional<Item> optionalItem = itemDAO.findById(itemId);
-
-        if (!optionalItem.isPresent())
-            throw new ItemNotFoundException("Item Record is not available...");
-
-        Item item = itemDAO.findById(itemId).get();
+    public Item updateItem(Item item) {
         return itemDAO.save(item);
     }
 

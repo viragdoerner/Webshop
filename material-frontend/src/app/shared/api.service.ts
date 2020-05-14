@@ -14,16 +14,29 @@ export class ApiService {
 
   }
 
-  getAllItems() : Observable<Item[]> {
-    let url = "http://localhost:8080/items";
+  getAllItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.BASE_URL);
   }
 
-  postItem(item: Item) : Observable<any> {
-    return  this.http.post(this.BASE_URL, item);
+  postItem(item: object): Observable<Item> {
+    console.log('service add');
+    return this.http.post<Item>(this.BASE_URL, item);
   }
 
-  updateItem(item: Item) : Observable<any>{
-    return  this.http.put(this.BASE_URL + "/" + item.itemId, item);
+  updateItem(item: Item): Observable<any> {
+    console.log("update");
+    return  this.http.put(this.BASE_URL, item);
+  }
+
+  deleteItem(id: number) {
+    this.http.delete(this.BASE_URL + '/' + id).subscribe(
+      (res) => {
+        // tslint:disable-next-line:prefer-const
+        console.log(res);
+      },
+      (err) => {
+        alert('get error');
+      }
+    );
   }
 }

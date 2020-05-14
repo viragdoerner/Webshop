@@ -18,10 +18,19 @@ public class Item {
     private String name;
     @NotNull
     private Integer price;
-
+    @NotNull
+    private String category;
 
     public Item(){}
 
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public int getItemId() {
         return itemId;

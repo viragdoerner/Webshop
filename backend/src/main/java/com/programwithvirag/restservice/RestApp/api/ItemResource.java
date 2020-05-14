@@ -36,10 +36,10 @@ public class ItemResource {
         return itemService.getItem(itemId);
     }
 
-    @PutMapping(value ="/{itemId}")
+    @PutMapping
     //@PreAuthorize("hasRole('ADMIN')")
-    public Item updateItem( @PathVariable int itemId){
-        return itemService.updateItem(itemId);
+    public Item updateItem( @RequestBody Item item){
+        return itemService.updateItem(item);
     }
 
     @DeleteMapping(value ="/{itemId}")

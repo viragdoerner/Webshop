@@ -45,6 +45,12 @@ export class TokenStorageService {
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
         this.role = authority.authority;
       });
+      if (this.role === 'ROLE_ADMIN'){
+        this.role = 'admin';
+      }
+      if (this.role === 'ROLE_USER'){
+        this.role = 'user';
+      }
     }
     return this.role;
   }

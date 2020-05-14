@@ -9,14 +9,20 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/home" >Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="authority == 'user'" class="nav-link waves-light" mdbWavesEffect routerLink="/neworder" >Order</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="authority == 'user'" class="nav-link waves-light" mdbWavesEffect routerLink="/myorder" >My Orders</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="authority == 'admin'" class="nav-link waves-light" mdbWavesEffect routerLink="/allorder" >Orders</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="authority == 'admin'" class="nav-link waves-light" mdbWavesEffect routerLink="/users" >Users</a>
       </li>
 
     </ul>
@@ -26,11 +32,13 @@
       <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group" mdbDropdown>
-            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
-            <div *ngIf="authority!= null" class="nav-item">{{username}}</div>
-            <a class="nav-item" routerLink="/login" routerLinkActive="active-link" >Sign in<span class="sr-only">(current)</span></a>
+            <div mdbDropdownToggle>
+              <mdb-icon fas icon="user" ></mdb-icon>
+              <a *ngIf="authority!= null" class="nav-item"> {{username}} </a>
+            </div>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a *ngIf="authority!= null" class="dropdown-item" (click)="Logout()">Sign out</a>
+              <a *ngIf="authority!= null" class="dropdown-item"  (click)="Logout()">Sign out</a>
+              <a *ngIf="authority == null"  class="dropdown-item" routerLink="/login" > Sign in</a>
             </div>
           </div>
         </a>

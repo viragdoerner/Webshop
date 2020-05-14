@@ -1,3 +1,116 @@
 
 <app-top-bar></app-top-bar>
-<p>product-list works!</p>
+
+
+<div *ngIf="authority!='admin'" class="container"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="md-form">
+        <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+               mdbInput>
+        <label for="search-input">Search</label>
+      </div>
+    </div>
+    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+      <tr mdbTableCol  *ngFor="let el of elements; let i = index">
+        <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{el.name}}</th>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="red-text">{{el.category}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.price}}</td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="4">
+          <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+  <!-- Editable table -->
+<div *ngIf="authority=='admin'" class="container pt-5">
+      <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="text-success" (click)="basicModal.show()">
+          <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+        </a>
+      </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Item Name</th>
+            <th class="text-center">Category</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Remove</th>
+          </tr>
+          <tr *ngFor="let item of items; let id = index">
+
+            <td>
+              <span contenteditable="true" (keyup)="changeValue(item.itemId, 'name', $event)" (blur)="updateName(item, $event)">{{item.name}}</span>
+            </td>
+            <td>
+              <span contenteditable="true" (keyup)="changeValue(item.itemId, 'category',  $event)" (blur)="updateCategory( item,$event)">{{item.category}}</span>
+            </td>
+            <td>
+              <span contenteditable="true" (keyup)="changeValue(item.itemId, 'price', $event)" (blur)="updatePrice(item, $event)">{{item.price}}</span>
+            </td>
+            <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(item.itemId)">Remove</button>
+            </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+  <!-- Editable table -->
+</div>
+
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Add item</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Default form login -->
+        <form class="text-center p-5" #addForm="ngForm">
+          <div class="md-form">
+            <input mdbInput type="text" id="name" class="form-control" [(ngModel)]="form.name" name="name">
+            <label for="name" class="">Name</label>
+          </div>
+            <div class="md-form">
+            <input mdbInput type="text" id="category" class="form-control" [(ngModel)]="form.category" name="category">
+          <label for="category" class="">Category</label>
+          </div>
+          <div class="md-form">
+            <input mdbInput type="number" id="price" class="form-control" [(ngModel)]="form.price" name="price">
+            <label for="price" class="">Price</label>
+          </div>
+
+        </form>
+        <!-- Default form login -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" type="submit" class="relative waves-light" mdbWavesEffect (click)="add(addForm)">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
