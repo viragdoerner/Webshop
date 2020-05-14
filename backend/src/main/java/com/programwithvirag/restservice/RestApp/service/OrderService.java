@@ -2,7 +2,6 @@ package com.programwithvirag.restservice.RestApp.service;
 import com.programwithvirag.restservice.RestApp.dao.OrderRepository;
 import com.programwithvirag.restservice.RestApp.exception.OrderNotFoundException;
 import com.programwithvirag.restservice.RestApp.model.Ordermodel;
-import com.programwithvirag.restservice.RestApp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,5 +47,9 @@ public class OrderService {
 
     public void deleteOrder(int orderId) {
         orderRepository.deleteById(orderId);
+    }
+
+    public Ordermodel updateItems(Ordermodel order) {
+        return orderRepository.save(order);
     }
 }

@@ -1,7 +1,9 @@
 package com.programwithvirag.restservice.RestApp.api;
 
 import com.programwithvirag.restservice.RestApp.model.Item;
+import com.programwithvirag.restservice.RestApp.model.Ordermodel;
 import com.programwithvirag.restservice.RestApp.service.ItemService;
+import com.programwithvirag.restservice.RestApp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +15,13 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ItemResource {
 
-
+    @Autowired
+    private OrderService orderService;
     @Autowired
     private ItemService itemService;
 
     @PostMapping
-   // @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     public Item addItem( @RequestBody Item item){
         return itemService.addItem( item);
     }
@@ -42,7 +45,20 @@ public class ItemResource {
     @DeleteMapping(value ="/{itemId}")
     //@PreAuthorize("hasRole('ADMIN')")
     public void deleteItem( @PathVariable int itemId){
-         itemService.deleteItem(itemId);
+        //kitörlöm az item kapcsolatait
+        List<Ordermodel> allOrder = orderService.getOrderList();
+        for(int i=0; i<allOrder.size(); i++){
+            List<Item> items = allOrder.get(i).getItems();
+            for(int j=0; j<items.size(); j++){
+                if(items.get(j).getItemId() == itemId){
+                    items.remove(j);
+                }
+            }
+            orderService.updateItems(allOrder.get(i));
+        }
+
+        //kitörlöm az item-et
+        itemService.deleteItem(itemId);
     }
 
 }

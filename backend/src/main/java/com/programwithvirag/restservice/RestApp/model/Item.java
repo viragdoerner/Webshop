@@ -1,20 +1,27 @@
 package com.programwithvirag.restservice.RestApp.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table
 public class Item {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int itemId;
     @NotNull
     private String name;
     @NotNull
     private Integer price;
+
+
+    public Item(){}
+
 
     public int getItemId() {
         return itemId;

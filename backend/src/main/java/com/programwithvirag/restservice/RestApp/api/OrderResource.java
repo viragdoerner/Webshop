@@ -4,6 +4,7 @@ package com.programwithvirag.restservice.RestApp.api;
 import com.programwithvirag.restservice.RestApp.dao.ItemDAO;
 import com.programwithvirag.restservice.RestApp.dao.UserRepository;
 import com.programwithvirag.restservice.RestApp.message.request.UpdateOrder;
+import com.programwithvirag.restservice.RestApp.model.Item;
 import com.programwithvirag.restservice.RestApp.model.Ordermodel;
 import com.programwithvirag.restservice.RestApp.model.User;
 import com.programwithvirag.restservice.RestApp.service.OrderService;
@@ -49,6 +50,24 @@ public class OrderResource {
 
     @DeleteMapping(value ="/{orderId}")
     public void deleteOrdermodel( @PathVariable int orderId){
+        //kitörlöm az item tömbjét
+        Ordermodel o = orderService.getOrder(orderId);
+        o.getItems().clear();
+        orderService.updateItems(o);
+
+        //kitörlöm a userhez való kapcsolatát
+        List<User> users = userService.getUserList();
+        for(int i=0; i<users.size(); i++){
+            List<Ordermodel> orders = users.get(i).getOrders();
+            for(int j=0; j<orders.size(); j++){
+                if(orders.get(j).getId() == orderId){
+                    orders.remove(j);
+                }
+            }
+            userService.updateUser(users.get(i));
+        }
+
+        //kitörlöm magát az objektumot
         orderService.deleteOrder(orderId);
     }
 
