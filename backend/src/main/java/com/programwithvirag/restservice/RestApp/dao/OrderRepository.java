@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends CrudRepository<Ordermodel, Integer > {
 
+
     @Override
     List<Ordermodel> findAll();
+
+
 }

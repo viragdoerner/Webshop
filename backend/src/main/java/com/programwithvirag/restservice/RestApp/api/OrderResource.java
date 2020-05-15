@@ -55,4 +55,9 @@ public class OrderResource {
         orderService.deleteOrder(orderId);
     }
 
+    @GetMapping (value ="/user/{username}")
+    public List<Ordermodel> getOrdersFromUser( @PathVariable("username") String username){
+        return orderService.getOrdersFromUser(username);
+    }
+
 }

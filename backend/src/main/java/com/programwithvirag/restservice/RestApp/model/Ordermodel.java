@@ -45,6 +45,9 @@ public class Ordermodel{
     public Ordermodel(){
     }
 
+    public boolean isUsername(String username){
+        return this.username == username;
+    }
     public LocalDate getDate() {
         return date;
     }

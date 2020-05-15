@@ -1,12 +1,15 @@
 package com.programwithvirag.restservice.RestApp.service;
 import com.programwithvirag.restservice.RestApp.dao.OrderRepository;
+import com.programwithvirag.restservice.RestApp.dao.UserRepository;
 import com.programwithvirag.restservice.RestApp.exception.OrderNotFoundException;
 import com.programwithvirag.restservice.RestApp.message.request.UpdateOrder;
 import com.programwithvirag.restservice.RestApp.model.Ordermodel;
 import com.programwithvirag.restservice.RestApp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +77,18 @@ public class OrderService {
 
     public Ordermodel updateItems(Ordermodel order) {
         return orderRepository.save(order);
+    }
+
+    public List<Ordermodel> getOrdersFromUser(String username) {
+        List<Ordermodel> all =  orderRepository.findAll();
+        //List<Ordermodel> result = Collections.emptyList();
+        Ordermodel temp =null;
+        List<Ordermodel> result = List.of(temp);
+        for(int i=0; i<all.size(); i++){
+            if( all.get(i).getUsername() == "virag") {
+                result.add(all.get(i));
+            }
+        }
+       return result;
     }
 }
