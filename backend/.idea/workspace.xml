@@ -2,33 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f338ebbf-0a5e-45f9-9d58-ffdbf7df279f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../material-frontend/src/app/model/order.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../material-frontend/src/app/model/order.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../material-frontend/src/app/model/user.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../material-frontend/src/app/model/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/ItemResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/ItemResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/OrderResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/OrderResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/api/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/message/request/UpdateOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/message/request/UpdateOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/model/Ordermodel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/model/Ordermodel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/programwithvirag/restservice/RestApp/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/ItemResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/ItemResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/OrderResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/OrderResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/UserResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/api/UserResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/message/request/UpdateOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/message/request/UpdateOrder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/model/Ordermodel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/model/Ordermodel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/programwithvirag/restservice/RestApp/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/allorder/allorder.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/allorder/allorder.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/allorder/allorder.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/allorder/allorder.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/product-list/product-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/product-list/product-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/product-list/product-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/product-list/product-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/shared/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/shared/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/users/users.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/users/users.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/users/users.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/users/users.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/auth/signup-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/auth/signup-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../material-frontend/src/app/top-bar/top-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../material-frontend/src/app/top-bar/top-bar.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589450301792</updated>
       <workItem from="1589450303129" duration="123000" />
-      <workItem from="1589450440975" duration="12983000" />
+      <workItem from="1589450440975" duration="13171000" />
     </task>
     <servers />
   </component>

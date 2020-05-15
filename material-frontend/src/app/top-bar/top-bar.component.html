@@ -39,6 +39,7 @@
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <a *ngIf="authority!= null" class="dropdown-item"  (click)="Logout()">Sign out</a>
               <a *ngIf="authority == null"  class="dropdown-item" routerLink="/login" > Sign in</a>
+              <a *ngIf="authority == null"  class="dropdown-item" routerLink="/register" > Sign up</a>
             </div>
           </div>
         </a>

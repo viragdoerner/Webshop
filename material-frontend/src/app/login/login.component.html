@@ -1,5 +1,5 @@
-<div class="container justify-content-center">
-  <div class="jumbotron col-6">
+<div class="container pt-5">
+  <div class="jumbotron col">
     <h1>Sign in</h1>
     <div>
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
@@ -25,6 +25,11 @@
              class="alert alert-danger mt-3">
           {{errorMessage}}
         </div>
+        <!-- Register -->
+        <p class="pt-4" >Not a member?
+          <a routerLink="/register">Sign up</a>
+        </p>
+
 
       </form>
     </div>

@@ -1,1 +1,53 @@
-<p>register works!</p>
+<div class="container pt-5">
+  <div class="jumbotron col">
+    <h1>Sign in</h1>
+    <div>
+      <form (ngSubmit)="onSubmit()" #RegisterForm="ngForm">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"
+                 required
+                 [(ngModel)]="form.name" name="name">
+
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username"
+                 required
+                 [(ngModel)]="form.username" name="username">
+
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email"
+                 required
+                 [(ngModel)]="form.email" name="email">
+
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password"
+                 required
+                 [(ngModel)]="form.password" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!RegisterForm.form.valid">Submit</button>
+        <div [hidden]="!failed"
+             class="alert alert-danger mt-3">
+          {{errorMessage}}
+        </div>
+
+        <!-- Login -->
+        <p class="pt-4" >Already have an account?
+          <a routerLink="/login">Sign in</a>
+        </p>
+
+
+      </form>
+    </div>
+  </div>
+</div>
