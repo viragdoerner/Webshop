@@ -26,7 +26,8 @@
           <span contenteditable="true" (keyup)="changeValue(order.id, 'status', $event)" (blur)="updateStatus(order, $event)">{{order.status}}</span>
         </td>
         <td>
-            <span class="table-remove">
+          <button type="button" mdbBtn color="amber" rounded="true" size="sm" class="my-0" (click)="activeRow(order.id)">Show</button>
+            <span *ngIf="showItems == order.id" class="table-remove">
               <ul *ngFor="let item of order.items" class="list-group list-group-flush">
                 <li class="list-group-item"> {{ item.name }}</li>
               </ul>

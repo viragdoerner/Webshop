@@ -12,6 +12,7 @@ export class MyorderComponent implements OnInit {
 
   orders: Order[] = [];
   public authority: string;
+  private showItems: number;
   constructor(private apiService: ApiService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -32,6 +33,10 @@ export class MyorderComponent implements OnInit {
       }
     );
   }
-
+  activeRow(id: number) {
+    if (this.showItems === id){
+      this.showItems = 0;
+    }else{ this.showItems = id;}
+  }
 
 }

@@ -81,14 +81,14 @@ public class OrderService {
 
     public List<Ordermodel> getOrdersFromUser(String username) {
         List<Ordermodel> all =  orderRepository.findAll();
-        //List<Ordermodel> result = Collections.emptyList();
-        Ordermodel temp =null;
-        List<Ordermodel> result = List.of(temp);
+        List<Ordermodel> result = Collections.emptyList();
         for(int i=0; i<all.size(); i++){
-            if( all.get(i).getUsername() == "virag") {
+            if( all.get(i).getUsername() ==username) {
                 result.add(all.get(i));
             }
         }
-       return result;
+
+       //all.remove(0);
+       return all;
     }
 }

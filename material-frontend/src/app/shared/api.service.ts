@@ -28,7 +28,7 @@ export class ApiService {
 
   updateItem(item: Item): Observable<any> {
     console.log("update");
-    return  this.http.put(this.BASE_URL_ITEMS, item);
+    return this.http.put(this.BASE_URL_ITEMS, item);
   }
 
   deleteItem(id: number) {
@@ -38,7 +38,7 @@ export class ApiService {
         console.log(res);
       },
       (err) => {
-        alert('get error');
+        alert(err.error.message);
       }
     );
   }
@@ -48,7 +48,7 @@ export class ApiService {
   }
 
   updateOrder(id: number, status: string) {
-    return  this.http.put(this.BASE_URL_ORDERS + '/' + id, status);
+    return this.http.put(this.BASE_URL_ORDERS + '/' + id, status);
   }
 
   deleteOrder(id: number) {
@@ -58,7 +58,7 @@ export class ApiService {
         console.log(res);
       },
       (err) => {
-        alert('get error');
+        alert(err.error.message);
       }
     );
   }
@@ -74,7 +74,19 @@ export class ApiService {
         console.log(res);
       },
       (err) => {
-        alert('get error');
+        alert(err.error.message);
+      }
+    );
+  }
+
+  postOrder(order: object) {
+    this.http.post<Order>(this.BASE_URL_ORDERS, order).subscribe(
+      (res) => {
+        // tslint:disable-next-line:prefer-const
+        console.log(res);
+      },
+      (err) => {
+        alert(err.error.message);
       }
     );
   }

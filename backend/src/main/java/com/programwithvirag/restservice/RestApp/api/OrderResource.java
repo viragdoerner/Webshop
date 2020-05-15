@@ -29,33 +29,39 @@ public class OrderResource {
 
 
     @PostMapping
+    @PreAuthorize("hasRole('USER')")
     public User addOrdermodel(@RequestBody Ordermodel ordermodel){
         return userService.addOrder(ordermodel);
         //return orderService.addOrder(ordermodel);
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Ordermodel> getOrdermodels(){
         return orderService.getOrderList();
     }
 
     @GetMapping (value ="/{orderId}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Ordermodel getOrdermodel( @PathVariable("orderId") int orderId){
         return orderService.getOrder(orderId);
     }
 
     @PutMapping(value ="/{orderId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Ordermodel updateOrdermodel( @PathVariable int orderId, @RequestBody String status){
         return orderService.updateOrder(orderId, status);
     }
 
     @DeleteMapping(value ="/{orderId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteOrdermodel( @PathVariable int orderId){
 
         orderService.deleteOrder(orderId);
     }
 
     @GetMapping (value ="/user/{username}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Ordermodel> getOrdersFromUser( @PathVariable("username") String username){
         return orderService.getOrdersFromUser(username);
     }

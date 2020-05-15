@@ -13,6 +13,7 @@ export class AllorderComponent implements OnInit {
 
   orders: Order[] = [];
   editField: string;
+  showItems: number;
 
   constructor(private apiService: ApiService) { }
 
@@ -48,5 +49,11 @@ export class AllorderComponent implements OnInit {
 
   changeValue(id: number, property: string, event: any) {
     this.editField = event.target.textContent;
+  }
+
+  activeRow(id: number) {
+    if (this.showItems === id){
+      this.showItems = 0;
+    }else{ this.showItems = id;}
   }
 }

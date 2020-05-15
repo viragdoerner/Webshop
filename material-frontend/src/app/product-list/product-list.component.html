@@ -1,9 +1,7 @@
 
 <app-top-bar></app-top-bar>
 
-
-<div *ngIf="authority!='admin'" class="container"></div>
-<div class="container">
+<div class="container pt-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="md-form">
@@ -12,44 +10,26 @@
         <label for="search-input">Search</label>
       </div>
     </div>
-    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+    <table *ngIf="authority!='admin'" mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
       <thead class="sticky-top">
       <tr>
-        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
-            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+        <th *ngFor="let head of headElements"
+            scope="col">{{head | titlecase}}
         </th>
       </tr>
       </thead>
       <tbody #row>
-      <tr mdbTableCol  *ngFor="let el of elements; let i = index">
-        <th scope="row">{{el.name}} {{i}}</th>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="red-text">{{el.category}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.price}}</td>
-      </tr>
-      <tr *ngFor="let item of items; let i = index">
-
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-          {{item.name}}
-        </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-          {{item.category}}
-        </td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-          {{item.price}}
-        </td>
+      <tr mdbTableCol  *ngFor="let el of items" >
+        <th *ngIf="searchText=='' || el.name == searchText || el.category == searchText" scope="row">{{el.name}}</th>
+        <td *ngIf="searchText=='' || el.name == searchText || el.category == searchText" >{{el.category}}</td>
+        <td *ngIf="searchText=='' || el.name == searchText || el.category == searchText">{{el.price}}</td>
       </tr>
       </tbody>
-      <tfoot class="grey lighten-5 w-100">
-      <tr>
-        <td colspan="4">
-          <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
-        </td>
-      </tr>
-      </tfoot>
     </table>
   </div>
 </div>
-  <!-- Editable table -->
+
+  <!-- Editable table only for admin -->
 <div *ngIf="authority=='admin'" class="container pt-5">
       <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
@@ -66,16 +46,16 @@
           </tr>
           <tr *ngFor="let item of items; let id = index">
 
-            <td>
+            <td *ngIf="searchText=='' || item.name == searchText || item.category == searchText">
               <span contenteditable="true" (keyup)="changeValue(item.itemId, 'name', $event)" (blur)="updateName(item, $event)">{{item.name}}</span>
             </td>
-            <td>
+            <td *ngIf="searchText=='' || item.name == searchText || item.category == searchText">
               <span contenteditable="true" (keyup)="changeValue(item.itemId, 'category',  $event)" (blur)="updateCategory( item,$event)">{{item.category}}</span>
             </td>
-            <td>
+            <td *ngIf="searchText=='' || item.name == searchText || item.category == searchText">
               <span contenteditable="true" (keyup)="changeValue(item.itemId, 'price', $event)" (blur)="updatePrice(item, $event)">{{item.price}}</span>
             </td>
-            <td>
+            <td *ngIf="searchText=='' || item.name == searchText || item.category == searchText">
             <span class="table-remove">
               <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(item.itemId)">Remove</button>
             </span>
@@ -119,7 +99,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-        <button type="button" mdbBtn color="primary" type="submit" class="relative waves-light" mdbWavesEffect (click)="add(addForm)">Add</button>
+        <button type="button" mdbBtn color="primary" type="submit" class="relative waves-light" mdbWavesEffect (click)="add(addForm, basicModal)">Add</button>
       </div>
     </div>
   </div>

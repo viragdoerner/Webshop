@@ -1,3 +1,66 @@
 
 <app-top-bar></app-top-bar>
-<p>neworder works!</p>
+<div class="container col-10 offset-2 pt-5">
+  <div class="row">
+    <div class="col-7 mr-5">
+      <div class="col-md-6 mx-auto">
+        <div class="md-form">
+          <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+                 mdbInput>
+          <label for="search-input">Search</label>
+        </div>
+      </div>
+      <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+        <thead class="sticky-top">
+        <tr>
+          <th *ngFor="let head of headElements"
+              scope="col">{{head | titlecase}}
+          </th>
+        </tr>
+        </thead>
+        <tbody #row>
+        <tr mdbTableCol  *ngFor="let el of elements" >
+          <th *ngIf="searchText=='' || el.name == searchText || el.category == searchText" scope="row">{{el.name}}</th>
+          <td *ngIf="searchText=='' || el.name == searchText || el.category == searchText" >{{el.category}}</td>
+          <td *ngIf="searchText=='' || el.name == searchText || el.category == searchText">{{el.price}}</td>
+          <td *ngIf="searchText=='' || el.name == searchText || el.category == searchText">
+              <span class="table-remove">
+                <button type="button" mdbBtn color="dark-green" rounded="true" size="sm" class="my-0" (click)="addToCart(el)"><mdb-icon fas icon="plus"></mdb-icon></button>
+
+              </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-3 mt-5 pt-5 ml-5">
+
+      <table mdbTable #table="mdbTable" hover="true" class="pt-5 z-depth-1">
+        <thead class="sticky-top">
+        <tr>
+          <h4 class="p-3">Cart</h4>
+        </tr>
+        </thead>
+        <tbody #row>
+        <tr mdbTableCol  *ngFor="let el of cart" >
+          <th scope="row">{{el.name}}</th>
+          <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="unique" rounded="true" size="sm" class="my-0" (click)="deleteFromCart(el.itemId)"><mdb-icon fas icon="minus"></mdb-icon></button>
+
+              </span>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+        <tr>
+          <td >
+            <button  [ngClass]="{'disabled':cart.length==0}" type="button" mdbBtn color="amber" rounded="true" size="sm" class="my-0 " (click)="orderItems()">Order</button>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+</div>

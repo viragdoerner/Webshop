@@ -22,6 +22,7 @@ public class UserResource {
 
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<User> getUsers(){
         return userService.getUserList();
     }

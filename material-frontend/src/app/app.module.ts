@@ -13,11 +13,12 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AllorderComponent } from './allorder/allorder.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { NeworderComponent } from './neworder/neworder.component';
 import { UsersComponent } from './users/users.component';
+import {AuthInterceptor} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,11 @@ import { UsersComponent } from './users/users.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide : HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi   : true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

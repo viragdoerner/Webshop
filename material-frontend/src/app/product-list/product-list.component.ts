@@ -10,7 +10,7 @@ import {MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductListComponent implements OnInit{
 
   public authority: string;
   form: any = {};
@@ -28,13 +28,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   searchText: string = '';
   previous: string;
 
-  maxVisibleItems: number = 8;
-
-  constructor( private apiService: ApiService, private tokenStorage: TokenStorageService, private cdRef: ChangeDetectorRef) { }
-
-  @HostListener('input') oninput() {
-    this.mdbTablePagination.searchText = this.searchText;
-  }
+  constructor( private apiService: ApiService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -42,47 +36,12 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       console.log('top-bar init: ' + this.authority);
     }
     this.getAllItems();
-    /*for (let i = 1; i <= this.items.length; i++) {
-      this.elements.push({
-        name: i.toString(),
-        category: 'Wpis' + (Math.floor(Math.random() * i * 10 )).toString(),
-        price: 'Last' + (Math.floor(Math.random() * i * 10 )).toString()});
-    }*/
-    console.log("hosszu"+this.items.length);
-    for (let i = 0; i < this.items.length; i++) {
-     // const temp: Item = this.items.pop();
-      this.elements.push({
-        name: i,
-        category: 3,
-        price: 4
-      });
-    }
-    var alphas:string[];
-    alphas = ["1","2","3","4"]
-    console.log(alphas[0]);
-    alphas.forEach( function (value) {
-      console.log(value);
-    });
-    let temp = this.elements.json().results;
-    temp.forEach( function (value) {
-      console.log(value);
-    });
-
-    //const temp1: Item[] = this.items.filter(h => h.itemId !== 1030);
-    //console.log(temp1[0].name);
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();;
   }
 
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
-  }
 
   searchItems() {
     const prev = this.mdbTable.getDataSource();
@@ -96,14 +55,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
-
-    this.mdbTablePagination.calculateFirstItemIndex()
-    this.mdbTablePagination.calculateLastItemIndex();
-
-    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
-      this.mdbTablePagination.calculateFirstItemIndex();
-      this.mdbTablePagination.calculateLastItemIndex();
-    });
   }
 
   public getAllItems() {
@@ -113,7 +64,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         this.elements = res;
       },
       err => {
-        alert("get error");
+        alert(err.error.message);
       }
     );
   }
@@ -131,7 +82,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         console.log(data);
       },
       error  => {
-        console.log(error);
+        alert(error.error.message);
       }
     );
   }
@@ -150,7 +101,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         console.log(data);
       },
       error  => {
-        console.log(error);
+        alert(error.error.message);
       }
     );
   }
@@ -169,7 +120,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         console.log(data);
       },
       error  => {
-        console.log(error);
+        alert(error.error.message);
       }
     );
   }
@@ -180,7 +131,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.items = this.items.filter(h => h.itemId !== id);
   }
 
-  add(addForm: NgForm) {
+  add(addForm: NgForm, basicModal: any) {
     const item: Object = {
       name: this.form.name,
       price: this.form.price,
@@ -191,9 +142,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         this.items.push(data);
       },
       error  => {
-        console.log(error);
+        alert(error.error.message);
       }
     );
+    basicModal.hide();
   }
 
   changeValue(id: number, property: string, event: any) {
